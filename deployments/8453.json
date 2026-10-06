@@ -1,4 +1,7 @@
 {
+  "payeeVaultFactory": "0xE01E989dc82547144aE92918104a90336220d0df",
   "proofOfContribution": "0xC398F2Fa964245d765C445b87B427e52467225e2",
+  "resourceRegistry": "0xb80B0b88c55Af8f7Be65c407ae05B15466218d30",
+  "resourceRegistryStartBlock": 52243308,
   "startBlock": 51633710
 }

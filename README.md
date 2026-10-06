@@ -7,8 +7,8 @@ fixed beneficiary.
 | Contract | What it records | Base (8453) | Base Sepolia (84532) |
 |---|---|---|---|
 | [`ProofOfContribution`](src/ProofOfContribution.sol) | Contributors, content hashes they anchor, daily check-ins | [`0xC398F2Fa964245d765C445b87B427e52467225e2`](https://basescan.org/address/0xC398F2Fa964245d765C445b87B427e52467225e2#code) | — |
-| [`ResourceRegistry`](src/ResourceRegistry.sol) (v2) | Paid resources for AI agents (models, tools, APIs, datasets, compute), their payees and prices; agent wallets | — | [`0xb80B0b88c55Af8f7Be65c407ae05B15466218d30`](https://sepolia.basescan.org/address/0xb80B0b88c55Af8f7Be65c407ae05B15466218d30#code) |
-| [`PayeeVaultFactory`](src/PayeeVaultFactory.sol) | One CREATE2 payee address per resource, each paying out only to its beneficiary | — | [`0xE01E989dc82547144aE92918104a90336220d0df`](https://sepolia.basescan.org/address/0xE01E989dc82547144aE92918104a90336220d0df#code) |
+| [`ResourceRegistry`](src/ResourceRegistry.sol) (v2) | Paid resources for AI agents (models, tools, APIs, datasets, compute), their payees and prices; agent wallets | [`0xb80B0b88c55Af8f7Be65c407ae05B15466218d30`](https://basescan.org/address/0xb80B0b88c55Af8f7Be65c407ae05B15466218d30#code) | [`0xb80B0b88c55Af8f7Be65c407ae05B15466218d30`](https://sepolia.basescan.org/address/0xb80B0b88c55Af8f7Be65c407ae05B15466218d30#code) |
+| [`PayeeVaultFactory`](src/PayeeVaultFactory.sol) | One CREATE2 payee address per resource, each paying out only to its beneficiary | [`0xE01E989dc82547144aE92918104a90336220d0df`](https://basescan.org/address/0xE01E989dc82547144aE92918104a90336220d0df#code) | [`0xE01E989dc82547144aE92918104a90336220d0df`](https://sepolia.basescan.org/address/0xE01E989dc82547144aE92918104a90336220d0df#code) |
 
 Each is deployed through the canonical CREATE2 factory with a fixed salt, so it has the same address
 on every chain it is deployed to. Deployment blocks are in [`deployments/`](deployments), and the
