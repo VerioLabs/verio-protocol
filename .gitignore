@@ -5,3 +5,9 @@ cache/
 broadcast/**/dry-run
 broadcast/**/31337
 deployments/31337.json
+
+# sdk/
+sdk/node_modules/
+sdk/dist/
+sdk/.env
+sdk/wallets*.json

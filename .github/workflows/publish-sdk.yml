@@ -1,0 +1,38 @@
+name: publish-sdk
+
+# Publishes @veriolabs/sdk (sdk/) to npm when a tag sdk-v<version> is pushed, e.g. sdk-v0.2.0. The
+# tag must match sdk/package.json. Authenticates with npm trusted publishing (OIDC) once this
+# workflow is set as the package's trusted publisher; until then (the first release) it uses the
+# NPM_TOKEN secret. Either way the package carries a provenance attestation for this repository.
+on:
+  push:
+    tags: ['sdk-v*']
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: sdk } }
+    steps:
+      - uses: actions/checkout@v4
+        with: { submodules: recursive }
+      - uses: foundry-rs/foundry-toolchain@v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - name: Tag matches package version
+        run: |
+          version=$(node -p "require('./package.json').version")
+          test "sdk-v$version" = "$GITHUB_REF_NAME" || { echo "tag $GITHUB_REF_NAME != sdk-v$version"; exit 1; }
+      - run: forge build
+        working-directory: .
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

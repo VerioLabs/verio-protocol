@@ -76,6 +76,12 @@ Events: `VaultDeployed`, `Swept`.
 
 A change means a new deployment with a new salt, at a new address.
 
+## SDK
+
+[`sdk/`](sdk) is [`@veriolabs/sdk`](https://www.npmjs.com/package/@veriolabs/sdk): viem clients for
+these contracts that add the ERC-8021 Builder Code to every write, an x402 client for agents that
+pay for registered resources, and the `verio` CLI. See its [README](sdk/README.md).
+
 ## Build and test
 
 ```sh
@@ -85,6 +91,12 @@ forge test
 ```
 
 Requires [Foundry](https://book.getfoundry.sh). Solidity 0.8.24, optimizer 1,000 runs, EVM `cancun`.
+
+The SDK's tests deploy the contracts to anvil, so they need Foundry too and a `forge build` first:
+
+```sh
+forge build && cd sdk && npm ci && npm test
+```
 
 ## Deploy
 

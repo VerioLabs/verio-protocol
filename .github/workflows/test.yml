@@ -13,3 +13,22 @@ jobs:
       - uses: foundry-rs/foundry-toolchain@v1
       - run: forge fmt --check
       - run: forge test -vv
+
+  sdk:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: sdk } }
+    steps:
+      - uses: actions/checkout@v4
+        with: { submodules: recursive }
+      # With foundry installed the anvil, ABI and CLI tests run instead of being skipped.
+      - uses: foundry-rs/foundry-toolchain@v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: sdk/package-lock.json
+      - run: forge build
+        working-directory: .
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test

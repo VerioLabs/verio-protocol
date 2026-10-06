@@ -1,0 +1,74 @@
+{
+  "name": "@veriolabs/sdk",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "ProofOfContribution and ResourceRegistry clients (viem) with ERC-8021 Builder Code attribution, an x402 agent client, and the verio CLI",
+  "license": "MIT",
+  "keywords": [
+    "verio",
+    "base",
+    "erc-8021",
+    "builder-code",
+    "x402",
+    "ai-agents",
+    "viem"
+  ],
+  "homepage": "https://github.com/VerioLabs/verio-protocol/tree/main/sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VerioLabs/verio-protocol.git",
+    "directory": "sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/VerioLabs/verio-protocol/issues"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./agent": {
+      "types": "./dist/agent.d.ts",
+      "default": "./dist/agent.js"
+    },
+    "./hub": {
+      "types": "./dist/hub.d.ts",
+      "default": "./dist/hub.js"
+    }
+  },
+  "bin": {
+    "verio": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsc -p tsconfig.json && vitest run",
+    "sync": "node scripts/sync-deployments.mjs",
+    "cli": "node dist/cli.js"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.10",
+    "typescript": "^5.6.3",
+    "viem": "^2.23.2",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "peerDependencies": {
+    "viem": "^2.23.0"
+  },
+  "dependencies": {
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/fetch": "2.28.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
