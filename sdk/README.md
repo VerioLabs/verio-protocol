@@ -84,7 +84,7 @@ since a vault's beneficiary never changes.
 ```ts
 import { discover, invoke } from '@veriolabs/sdk/agent'
 
-const [resource] = await discover('https://verio-pre.vercel.app', {
+const [resource] = await discover('https://www.verio.network', {
   capabilities: ['image-generation'],
   maxPrice: 20_000n,
   sort: 'price',
@@ -122,7 +122,7 @@ import { http } from 'viem'
 import { baseSepolia } from 'viem/chains'
 
 const hub = createHubClient({
-  apiBase: 'https://verio-pre.vercel.app',
+  apiBase: 'https://www.verio.network',
   apiKey: process.env.VERIO_API_KEY!,
 })
 

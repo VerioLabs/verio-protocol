@@ -14,7 +14,7 @@ import { contentHash } from './hash.js'
 import { createRegistryClient, type PayeeConsent } from './registry.js'
 
 export type HubClientConfig = {
-  /** The Verio deployment, e.g. `https://verio-pre.vercel.app`. */
+  /** The Verio deployment, e.g. `https://www.verio.network`. */
   apiBase: string
   /** An API key (`vk_…`), made in the app under API keys; it acts for that account. */
   apiKey: string

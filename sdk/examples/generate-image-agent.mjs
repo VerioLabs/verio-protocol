@@ -4,7 +4,7 @@
 //   (umask 077; node -e "const{generatePrivateKey:g,privateKeyToAccount:a}=require('viem/accounts');const k=g();console.log(JSON.stringify([{address:a(k).address,privateKey:k}]))" > wallets-agent.json)   # once; fund it with test USDC
 //   node examples/generate-image-agent.mjs "a cat astronaut, watercolor" [--asset 0x…] [--max 20000] [--out image.png]
 //
-// env: VERIO_API (default https://verio-pre.vercel.app), AGENT_WALLET (default wallets-agent.json)
+// env: VERIO_API (default https://www.verio.network), AGENT_WALLET (default wallets-agent.json)
 import { readFileSync, writeFileSync } from 'node:fs'
 import { parseArgs } from 'node:util'
 
@@ -23,7 +23,7 @@ const { values, positionals } = parseArgs({
 const prompt = positionals.join(' ')
 if (!prompt) throw new Error('usage: generate-image-agent.mjs "<prompt>" [--asset 0x…] [--max 20000] [--out image.png]')
 
-const api = process.env.VERIO_API ?? 'https://verio-pre.vercel.app'
+const api = process.env.VERIO_API ?? 'https://www.verio.network'
 const [wallet] = JSON.parse(readFileSync(process.env.AGENT_WALLET ?? 'wallets-agent.json', 'utf8'))
 const account = privateKeyToAccount(wallet.privateKey)
 const maxAmount = BigInt(values.max)
