@@ -2,12 +2,18 @@
 pragma solidity 0.8.24;
 
 import {Script} from "forge-std/Script.sol";
+import {VmSafe} from "forge-std/Vm.sol";
 
 /// @notice Records a contract in `deployments/<chainId>.json` without dropping the other contracts already listed
-///         there. The file holds only the keys listed in `_record`; add new contracts there.
+///         there. The file holds only the keys listed in `_record`; add new contracts there. A dry run (no
+///         `--broadcast`) writes nothing, so simulating a deployment never records an address that does not exist;
+///         nor does a run with `SKIP_DEPLOYMENTS_FILE=true`.
 abstract contract DeploymentsFile is Script {
     function _record(string memory addressKey, address deployed, string memory blockKey) internal {
-        string[2] memory addressKeys = ["proofOfContribution", "resourceRegistry"];
+        if (vm.isContext(VmSafe.ForgeContext.ScriptDryRun)) return;
+        // Tests deploy to several anvils at once, all chain 31337; they read addresses from the output.
+        if (vm.envOr("SKIP_DEPLOYMENTS_FILE", false)) return;
+        string[3] memory addressKeys = ["proofOfContribution", "resourceRegistry", "payeeVaultFactory"];
         string[2] memory blockKeys = ["startBlock", "resourceRegistryStartBlock"];
         string memory path = string.concat("deployments/", vm.toString(block.chainid), ".json");
         string memory existing = vm.exists(path) ? vm.readFile(path) : "{}";

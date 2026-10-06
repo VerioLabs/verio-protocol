@@ -1,4 +1,5 @@
 {
-  "resourceRegistry": "0xBfAB007FfDd73be58a7fAD66d6ac1766A7E45402",
-  "resourceRegistryStartBlock": 47672299
+  "payeeVaultFactory": "0xE01E989dc82547144aE92918104a90336220d0df",
+  "resourceRegistry": "0xb80B0b88c55Af8f7Be65c407ae05B15466218d30",
+  "resourceRegistryStartBlock": 47743342
 }
